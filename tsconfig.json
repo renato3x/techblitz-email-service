@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "module": "Node16",
+    "allowJs": true,
+    "rootDir": ".",
+    "baseUrl": ".",
+    "removeComments": true,
+    "noEmitOnError": true,
+    "skipDefaultLibCheck": false,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "outDir": "dist",
+    "strictPropertyInitialization": false,
+    "paths": {
+      "@/*": ["src/*"],
+      "@test/*": ["test/*"],
+    },
+    "typeRoots": ["node_modules/@types", "src/@types"]
+  }
+}
