@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { UserRegisteredDto } from './dto/user-registered.dto';
 
 @Injectable()
 export class UsersService {
-  async sendUserRegistrationEmail(user: unknown) {
-    console.log('Sending user registration email for', user);
+  async sendUserRegistrationEmail(userRegisteredDto: UserRegisteredDto) {
+    console.log('Sending user registration email for', userRegisteredDto);
   }
 }
