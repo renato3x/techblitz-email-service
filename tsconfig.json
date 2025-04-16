@@ -11,6 +11,7 @@
     "skipDefaultLibCheck": false,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
+    "jsx": "react",
     "strict": true,
     "skipLibCheck": true,
     "experimentalDecorators": true,
