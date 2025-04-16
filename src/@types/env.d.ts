@@ -5,6 +5,5 @@ declare namespace NodeJS {
     EMAIL_SENDER_PROVIDER: EmailSender.EmailSenderProviders;
     NODEMAILER_SMTP_TRANSPORT_OPTIONS: string;
     EMAIL_SENDER_SENDER_EMAIL: string;
-    EMAIL_TEMPLATES_PROVIDER: EmailTemplates.EmailTemplatesProviders;
   }
 }
