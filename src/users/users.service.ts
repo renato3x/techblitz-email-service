@@ -10,10 +10,8 @@ export class UsersService {
   ) {}
 
   async sendUserRegistrationEmail(userRegisteredDto: UserRegisteredDto) {
-    console.log('Sending user registration email for', userRegisteredDto);
-
     await this.emailSender.send({
-      from: 'renato3x.dev@gmail.com',
+      from: process.env.EMAIL_SENDER_SENDER_EMAIL,
       to: userRegisteredDto.email,
       subject: `Welcome to Techblitz, ${userRegisteredDto.username}!`,
       content: `<p>Be our guest, ${userRegisteredDto.username}!</p>`,
