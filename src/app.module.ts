@@ -8,7 +8,7 @@ import { EmailSenderModule } from '@/email-sender/email-sender.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    EmailSenderModule.forRoot({ provider: process.env.EMAIL_SENDER_PROVIDER }),
+    EmailSenderModule.forRoot({ provider: process.env.EMAIL_SERVICE_PROVIDER }),
     UsersModule,
   ],
   providers: [

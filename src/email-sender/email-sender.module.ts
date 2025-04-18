@@ -4,7 +4,7 @@ import { NodemailerEmailSenderService } from './services/nodemailer-email-sender
 @Global()
 @Module({})
 export class EmailSenderModule {
-  static forRoot(options: { provider: EmailSender.EmailSenderProviders }): DynamicModule {
+  static forRoot(options: { provider: EmailSender.EmailSenderProviderOptions }): DynamicModule {
     let useClass;
 
     switch (options.provider) {

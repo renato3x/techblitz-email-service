@@ -1,5 +1,5 @@
 declare namespace EmailSender {
-  type EmailSenderProviders = 'nodemailer';
+  type EmailSenderProviderOptions = 'nodemailer';
   type SendEmailOptions = {
     from: string;
     to: string;

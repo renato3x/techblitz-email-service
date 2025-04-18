@@ -1,9 +1,14 @@
 declare namespace NodeJS {
   interface ProcessEnv {
-    RMQ_URL: string;
-    MESSAGE_BROKER_QUEUE_NAME: string;
-    EMAIL_SENDER_PROVIDER: EmailSender.EmailSenderProviders;
-    NODEMAILER_SMTP_TRANSPORT_OPTIONS: string;
-    EMAIL_SENDER_SENDER_EMAIL: string;
+    EMAIL_SERVICE_BROKER_URL: string;
+    EMAIL_SERVICE_QUEUE_NAME: string;
+
+    EMAIL_SERVICE_PROVIDER: EmailSender.EmailSenderProviderOptions;
+    EMAIL_SERVICE_FROM_ADDRESS: string;
+
+    EMAIL_SERVICE_NODEMAILER_HOST: string;
+    EMAIL_SERVICE_NODEMAILER_PORT: string;
+    EMAIL_SERVICE_NODEMAILER_USER: string;
+    EMAIL_SERVICE_NODEMAILER_PASS: string;
   }
 }

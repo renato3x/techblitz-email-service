@@ -11,12 +11,10 @@ export class UsersService {
 
   async sendUserRegistrationEmail(userRegisteredDto: UserRegisteredDto) {
     await this.emailSender.send({
-      from: process.env.EMAIL_SENDER_SENDER_EMAIL,
+      from: process.env.EMAIL_SERVICE_FROM_ADDRESS,
       to: userRegisteredDto.email,
       subject: `Welcome to Techblitz, ${userRegisteredDto.username}!`,
       content: `<p style="font-family: "Arial", sans-serif;">Be our guest, <b>${userRegisteredDto.username}</b></p>`,
     });
-
-    console.log('Email sent to', userRegisteredDto.username);
   }
 }
