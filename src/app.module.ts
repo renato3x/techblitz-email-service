@@ -4,11 +4,13 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_PIPE } from '@nestjs/core';
 import { ZodValidationPipe } from 'nestjs-zod';
 import { EmailSenderModule } from '@/email-sender/email-sender.module';
+import { EmailComposerModule } from './email-composer/email-composer.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    EmailSenderModule.forRoot({ provider: process.env.EMAIL_SERVICE_PROVIDER }),
+    EmailSenderModule.forRoot({ provider: process.env.EMAIL_SERVICE_SENDER_PROVIDER }),
+    EmailComposerModule.forRoot({ provider: process.env.EMAIL_SERVICE_COMPOSER_PROVIDER }),
     UsersModule,
   ],
   providers: [
