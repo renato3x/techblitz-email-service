@@ -12,5 +12,7 @@ declare namespace NodeJS {
 
     EMAIL_SERVICE_SENDER_PROVIDER: EmailSender.EmailSenderProviderOptions;
     EMAIL_SERVICE_COMPOSER_PROVIDER: EmailComposer.EmailComposerProviderOptions;
+
+    EMAIL_SERVICE_CLIENT_URL: string;
   }
 }

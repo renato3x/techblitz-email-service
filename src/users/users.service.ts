@@ -13,7 +13,7 @@ export class UsersService {
   ) {}
 
   async sendUserRegistrationEmail(userRegisteredDto: UserRegisteredDto) {
-    const html = this.emailComposer.greetings(userRegisteredDto);
+    const html = await this.emailComposer.greetings(userRegisteredDto);
 
     await this.emailSender.send({
       from: process.env.EMAIL_SERVICE_FROM_ADDRESS,
