@@ -4,15 +4,15 @@ import { AppLogger } from '../interfaces/app-logger.interface';
 export class NestLoggerAdapter implements LoggerService {
   constructor(private readonly logger: AppLogger) {}
 
-  log(message: any) {
-    this.logger.info(message);
+  log(message: any, ...optionalParams: any[]) {
+    this.logger.info(message, { context: optionalParams[0] });
   }
 
-  error(message: any) {
-    this.logger.error(message);
+  error(message: any, ...optionalParams: any[]) {
+    this.logger.info(message, { context: optionalParams[0] });
   }
 
-  warn(message: any) {
-    this.logger.warn(message);
+  warn(message: any, ...optionalParams: any[]) {
+    this.logger.info(message, { context: optionalParams[0] });
   }
 }

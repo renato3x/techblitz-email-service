@@ -1,5 +1,5 @@
 export interface AppLogger {
-  info(message: string, context?: string): void;
-  error(message: string, trace?: string, context?: string): void;
-  warn(message: string, context?: string): void;
+  info(message: string, meta: AppLogger.LogMetadata): void;
+  error(message: string, meta: AppLogger.LogMetadata): void;
+  warn(message: string, meta: AppLogger.LogMetadata): void;
 }

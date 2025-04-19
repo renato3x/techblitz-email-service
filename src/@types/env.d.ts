@@ -16,5 +16,6 @@ declare namespace NodeJS {
     CLIENT_URL: string;
 
     APP_LOGGER_PROVIDER: AppLogger.AppLoggerProviderOptions;
+    NODE_ENV: 'development' | 'production';
   }
 }
