@@ -1,29 +1,26 @@
 import { DynamicModule, Global, Module } from '@nestjs/common';
-import { NodemailerEmailSenderService } from './services/nodemailer-email-sender.service';
+import { emailSenderProviders } from './email-sender.provider';
+import { EMAIL_SENDER_SERVICE } from './email-sender.constants';
 
 @Global()
 @Module({})
 export class EmailSenderModule {
   static forRoot(options: { provider: EmailSender.EmailSenderProviderOptions }): DynamicModule {
-    let useClass;
+    const emailSenderService = emailSenderProviders[options.provider];
 
-    switch (options.provider) {
-      case 'nodemailer':
-        useClass = NodemailerEmailSenderService;
-        break;
-      default:
-        throw new Error('Email sender provider not supported');
+    if (!emailSenderProviders) {
+      throw new Error('Email sender provider not supported');
     }
 
     return {
       module: EmailSenderModule,
       providers: [
         {
-          provide: 'EMAIL_SENDER_SERVICE',
-          useClass,
+          provide: EMAIL_SENDER_SERVICE,
+          useClass: emailSenderService,
         },
       ],
-      exports: ['EMAIL_SENDER_SERVICE'],
+      exports: [EMAIL_SENDER_SERVICE],
     };
   }
 }
