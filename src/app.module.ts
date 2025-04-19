@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
 import { UsersModule } from '@/users/users.module';
 import { ConfigModule } from '@nestjs/config';
-import { APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
+import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { ZodValidationPipe } from 'nestjs-zod';
 import { EmailSenderModule } from '@/email-sender/email-sender.module';
 import { EmailComposerModule } from './email-composer/email-composer.module';
 import { AppLoggerModule } from './app-logger/app-logger.module';
 import { CommonModule } from './common/common.module';
 import { RequestInterceptor } from './common/interceptors/request.interceptor';
+import { ErrorHandlerFilter } from './common/filters/error-handler.filter';
 
 @Module({
   imports: [
@@ -27,6 +28,10 @@ import { RequestInterceptor } from './common/interceptors/request.interceptor';
     {
       provide: APP_INTERCEPTOR,
       useClass: RequestInterceptor,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: ErrorHandlerFilter,
     },
   ],
 })
