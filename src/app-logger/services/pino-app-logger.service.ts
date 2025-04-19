@@ -21,6 +21,7 @@ export class PinoAppLoggerService implements AppLogger {
             level: 'debug',
             options: {
               destination: 'app.log',
+              append: false,
             },
           },
         ],
@@ -41,6 +42,7 @@ export class PinoAppLoggerService implements AppLogger {
             level: 'info',
             options: {
               destination: 'app.log',
+              append: false,
             },
           },
         ],
