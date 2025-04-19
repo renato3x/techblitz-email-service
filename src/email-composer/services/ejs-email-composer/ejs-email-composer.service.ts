@@ -12,7 +12,7 @@ export class EjsEmailComposerService implements EmailComposer {
 
     const html = await ejs.renderFile(filepath, {
       USERNAME: userRegisteredDto.username,
-      CLIENT_URL: process.env.EMAIL_SERVICE_CLIENT_URL,
+      CLIENT_URL: process.env.CLIENT_URL,
       REGISTRATION_DATE: userRegisteredDto.createdAt.toDateString(),
     });
 

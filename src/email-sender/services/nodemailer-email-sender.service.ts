@@ -8,11 +8,11 @@ export class NodemailerEmailSenderService implements EmailSender {
 
   constructor() {
     this.transporter = createTransport({
-      host: process.env.EMAIL_SERVICE_NODEMAILER_HOST,
-      port: +process.env.EMAIL_SERVICE_NODEMAILER_PORT,
+      host: process.env.NODEMAILER_HOST,
+      port: +process.env.NODEMAILER_PORT,
       auth: {
-        user: process.env.EMAIL_SERVICE_NODEMAILER_USER,
-        pass: process.env.EMAIL_SERVICE_NODEMAILER_PASS,
+        user: process.env.NODEMAILER_USER,
+        pass: process.env.NODEMAILER_PASS,
       },
     });
   }

@@ -16,7 +16,7 @@ export class UsersService {
     const html = await this.emailComposer.greetings(userRegisteredDto);
 
     await this.emailSender.send({
-      from: process.env.EMAIL_SERVICE_FROM_ADDRESS,
+      from: process.env.FROM_EMAIL_ADDRESS,
       to: userRegisteredDto.email,
       subject: `Welcome to Techblitz, ${userRegisteredDto.username}!`,
       content: html,

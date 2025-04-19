@@ -9,8 +9,8 @@ import { EmailComposerModule } from './email-composer/email-composer.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    EmailSenderModule.forRoot({ provider: process.env.EMAIL_SERVICE_SENDER_PROVIDER }),
-    EmailComposerModule.forRoot({ provider: process.env.EMAIL_SERVICE_COMPOSER_PROVIDER }),
+    EmailSenderModule.forRoot({ provider: process.env.EMAIL_SENDER_PROVIDER }),
+    EmailComposerModule.forRoot({ provider: process.env.EMAIL_COMPOSER_PROVIDER }),
     UsersModule,
   ],
   providers: [
