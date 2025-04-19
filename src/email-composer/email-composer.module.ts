@@ -1,29 +1,26 @@
 import { DynamicModule, Global, Module } from '@nestjs/common';
-import { EjsEmailComposerService } from './services/ejs-email-composer/ejs-email-composer.service';
+import { EMAIL_COMPOSER_SERVICE } from './email-composer.constants';
+import { emailComposerProviders } from './email-composer.providers';
 
 @Global()
 @Module({})
 export class EmailComposerModule {
   static forRoot(options: { provider: EmailComposer.EmailComposerProviderOptions }): DynamicModule {
-    let useClass;
+    const emailComposerService = emailComposerProviders[options.provider];
 
-    switch (options.provider) {
-      case 'ejs':
-        useClass = EjsEmailComposerService;
-        break;
-      default:
-        throw new Error('Email composer provider not supported');
+    if (!emailComposerProviders) {
+      throw new Error('Email composer provider not supported');
     }
 
     return {
       module: EmailComposerModule,
       providers: [
         {
-          provide: 'EMAIL_COMPOSER_SERVICE',
-          useClass,
+          provide: EMAIL_COMPOSER_SERVICE,
+          useClass: emailComposerService,
         },
       ],
-      exports: ['EMAIL_COMPOSER_SERVICE'],
+      exports: [EMAIL_COMPOSER_SERVICE],
     };
   }
 }
