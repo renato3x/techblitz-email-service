@@ -15,15 +15,7 @@ export class PinoAppLoggerService implements AppLogger {
             level: 'debug',
             options: {
               colorize: true,
-              hideObject: true,
             } as PrettyOptions,
-          },
-          {
-            target: 'pino/file',
-            level: 'debug',
-            options: {
-              destination: 'app.log',
-            },
           },
         ],
       },
@@ -31,14 +23,6 @@ export class PinoAppLoggerService implements AppLogger {
     production: {
       transport: {
         targets: [
-          {
-            target: 'pino-pretty',
-            level: 'info',
-            options: {
-              colorize: true,
-              hideObject: true,
-            } as PrettyOptions,
-          },
           {
             target: 'pino/file',
             level: 'info',
