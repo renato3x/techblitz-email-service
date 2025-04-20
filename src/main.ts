@@ -1,13 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
-import { AppLogger } from './app-logger/interfaces/app-logger.interface';
-import { APP_LOGGER_SERVICE } from './app-logger/app-logger.constants';
-import { NestLoggerAdapter } from './app-logger/adapters/nest-logger.adapter';
+import { AppLoggerAdapter } from './app-logger/adapters/app-logger.adapter';
+import { AppLoggerFactory } from './app-logger/app-logger.factory';
 
 async function bootstrap() {
+  const AppLogger = AppLoggerFactory.getAppLogger(process.env.APP_LOGGER_PROVIDER);
+  const logger = new AppLoggerAdapter(new AppLogger());
+
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
     transport: Transport.RMQ,
+    logger: logger,
     options: {
       urls: [process.env.BROKER_URL],
       queue: process.env.QUEUE_NAME,
@@ -18,10 +21,6 @@ async function bootstrap() {
     },
   });
 
-  const logger = app.get<AppLogger>(APP_LOGGER_SERVICE);
-  const loggerAdapter = new NestLoggerAdapter(logger);
-
-  app.useLogger(loggerAdapter);
   await app.listen();
 }
 
