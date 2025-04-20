@@ -27,7 +27,7 @@ export const UserRegisteredSchema = z.object({
     .refine((val) => !/^_+$/.test(val), {
       message: 'Username cannot consist of only underscores',
     }),
-  createdAt: z
+  created_at: z
     .string({ message: 'CreatedAt is required' })
     .datetime('Created at must be a date')
     .transform((date) => new Date(date)),
