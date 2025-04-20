@@ -13,8 +13,10 @@ export class RequestInterceptor implements NestInterceptor {
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const rpc = context.switchToRpc();
+
     const ctx = rpc.getContext<RmqContext>();
     const pattern = ctx.getPattern();
+
     const meta = {
       pattern,
       handler: context.getHandler().name,

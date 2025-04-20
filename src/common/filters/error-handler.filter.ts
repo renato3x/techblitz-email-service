@@ -13,8 +13,10 @@ export class ErrorHandlerFilter<T extends Error> implements ExceptionFilter {
 
   catch(exception: T, host: ArgumentsHost) {
     const rpc = host.switchToRpc();
+
     const context = rpc.getContext<RmqContext>();
     const pattern = context.getPattern();
+
     const logMessage = `Error handling message '${pattern}'`;
 
     if (exception instanceof ZodValidationException) {

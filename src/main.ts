@@ -22,7 +22,7 @@ async function bootstrap() {
   const loggerAdapter = new NestLoggerAdapter(logger);
 
   app.useLogger(loggerAdapter);
-
   await app.listen();
 }
+
 bootstrap();

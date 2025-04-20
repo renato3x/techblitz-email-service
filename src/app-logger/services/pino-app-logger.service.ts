@@ -5,6 +5,7 @@ import pino, { Logger, LoggerOptions } from 'pino';
 
 @Injectable()
 export class PinoAppLoggerService implements AppLogger {
+  private readonly logger: Logger;
   private readonly options: Record<string, LoggerOptions> = {
     development: {
       transport: {
@@ -14,6 +15,7 @@ export class PinoAppLoggerService implements AppLogger {
             level: 'debug',
             options: {
               colorize: true,
+              hideObject: true,
             } as PrettyOptions,
           },
           {
@@ -35,6 +37,7 @@ export class PinoAppLoggerService implements AppLogger {
             level: 'info',
             options: {
               colorize: true,
+              hideObject: true,
             } as PrettyOptions,
           },
           {
@@ -49,8 +52,6 @@ export class PinoAppLoggerService implements AppLogger {
       },
     },
   };
-
-  private readonly logger: Logger;
 
   constructor() {
     this.logger = pino(this.options[process.env.NODE_ENV]);
