@@ -20,6 +20,8 @@ export class RequestInterceptor implements NestInterceptor {
 
     const meta = {
       pattern,
+      handler: context.getHandler().name,
+      payload: message.content.toString(),
       id: message.properties.messageId,
       correlation_id: message.properties.correlationId,
       content_type: message.properties.contentType,
