@@ -4,6 +4,7 @@ import { EmailSender } from '@/email-sender/interfaces/email-sender.interface';
 import { EmailComposer } from '@/email-composer/interfaces/email-composer.interface';
 import { EMAIL_SENDER_SERVICE } from '@/email-sender/email-sender.constants';
 import { EMAIL_COMPOSER_SERVICE } from '@/email-composer/email-composer.constants';
+import { SendUserAccountRecoveryEmailDto } from './dto/send-user-account-recovery-email.dto';
 
 @Injectable()
 export class UsersService {
@@ -21,6 +22,18 @@ export class UsersService {
       from: process.env.FROM_EMAIL_ADDRESS,
       to: sendUserRegistrationEmailDto.email,
       subject: `Welcome to Techblitz, ${sendUserRegistrationEmailDto.username}!`,
+      content: html,
+    });
+  }
+
+  async sendUserAccountRecoveryEmail(sendUserAccountRecoveryEmailDto: SendUserAccountRecoveryEmailDto) {
+    const html = await this.emailComposer.accountRecovery(sendUserAccountRecoveryEmailDto);
+    const { user } = sendUserAccountRecoveryEmailDto;
+
+    await this.emailSender.send({
+      from: process.env.FROM_EMAIL_ADDRESS,
+      to: user.email,
+      subject: `Recover access to your Techblitz account, ${user.username}`,
       content: html,
     });
   }

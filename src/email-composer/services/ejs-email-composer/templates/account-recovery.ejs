@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Account Recovery - Techblitz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <%- include('./partials/styles') %>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--background);
+        color: var(--foreground);
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      .container {
+        padding: 5rem;
+        box-sizing: border-box;
+      }
+
+      .highlight {
+        color: var(--primary);
+        font-weight: 800;
+      }
+
+      h1 {
+        font-size: 3.5rem;
+        font-family: 'Inter', sans-serif;
+      }
+
+      p {
+        font-size: 1.125rem;
+        line-height: 1.8;
+        margin: 1.5rem 0;
+        text-align: justify;
+      }
+
+      .button {
+        display: block;
+        padding: 1rem;
+        background-color: var(--primary);
+        color: var(--primary-foreground);
+        text-align: center;
+        text-decoration: none;
+        font-size: 1.5rem;
+        font-weight: 600;
+        border-radius: var(--radius);
+        line-height: 1.8;
+        margin: 2rem 0;
+      }
+
+      main {
+        margin-bottom: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Recover your <span class="highlight">Techblitz</span> account</h1>
+      </header>
+
+      <main>
+        <p class="hello">
+          Hello <strong><%= USERNAME %></strong>,
+        </p>
+
+        <p>
+          We received a request to recover the account associated with the email <strong><%= EMAIL %></strong>.
+          If you made this request, click the button below to reset your password.
+        </p>
+
+        <p>
+          This link will be valid for <strong><%= EXPIRATION_TIME_IN_MINUTES %> minutes</strong> from the moment of the request:
+          <br />
+          <strong><%= ACCOUNT_RECOVERY_SOLICITATION_DATE %></strong>
+        </p>
+
+        <a href="<%= ACCOUNT_RECOVERY_URL %>" target="_blank" rel="noopener noreferrer" class="button">
+          Reset your password
+        </a>
+
+        <p>
+          If you did not request to recover your account, you can safely ignore this email. No action will be taken.
+        </p>
+
+        <p class="hello">
+          Stay safe,<br />
+          <span class="highlight">The Techblitz Team</span>
+        </p>
+      </main>
+
+      <footer>
+        <hr>
+        <p>This email was sent automatically. Please do not reply.</p>
+      </footer>
+    </div>
+  </body>
+</html>
