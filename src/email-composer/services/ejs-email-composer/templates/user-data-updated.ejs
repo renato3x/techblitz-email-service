@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Account Updated - Techblitz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+    <%- include('./partials/styles') %>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--background);
+        color: var(--foreground);
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      .container {
+        padding: 5rem;
+        box-sizing: border-box;
+      }
+
+      .highlight {
+        color: var(--primary);
+        font-weight: 800;
+      }
+
+      h1 {
+        font-size: 3.5rem;
+        font-family: 'Inter', sans-serif;
+      }
+
+      p {
+        font-size: 1.125rem;
+        line-height: 1.8;
+        margin: 1.5rem 0;
+        text-align: justify;
+      }
+
+      main {
+        margin-bottom: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Account update - <span class="highlight">Techblitz</span></h1>
+      </header>
+
+      <main>
+        <p class="hello">
+          Hello <strong><%= USERNAME %></strong>,
+        </p>
+
+        <p>
+          We’re reaching out to let you know that the information associated with your account (<strong><%= EMAIL %></strong>) was updated successfully on <strong><%= UPDATED_AT %></strong>.
+        </p>
+
+        <p>
+          If you didn’t make this change or believe an unauthorized person has accessed your account, please contact our support immediately.
+        </p>
+
+        <p class="hello">
+          Stay safe,<br />
+          <span class="highlight">The Techblitz Team</span>
+        </p>
+      </main>
+
+      <footer>
+        <hr />
+        <p>This email was sent automatically. Please do not reply.</p>
+      </footer>
+    </div>
+  </body>
+</html>

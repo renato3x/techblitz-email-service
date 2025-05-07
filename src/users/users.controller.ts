@@ -3,6 +3,7 @@ import { UsersService } from './users.service';
 import { EventPattern, Payload } from '@nestjs/microservices';
 import { SendUserRegistrationEmailDto } from './dto/send-user-registration-email.dto';
 import { SendUserAccountRecoveryEmailDto } from './dto/send-user-account-recovery-email.dto';
+import { SendUserDataUpdatedEmailDto } from './dto/send-user-data-updated-email.dto';
 
 @Controller()
 export class UsersController {
@@ -16,5 +17,10 @@ export class UsersController {
   @EventPattern('user.account-recovery')
   async handleUserAccountRecovery(@Payload() payload: SendUserAccountRecoveryEmailDto) {
     await this.usersService.sendUserAccountRecoveryEmail(payload);
+  }
+
+  @EventPattern('user.updated')
+  async handleUserUpdated(@Payload() payload: SendUserDataUpdatedEmailDto) {
+    await this.usersService.sendUserDataUpdatedEmail(payload);
   }
 }

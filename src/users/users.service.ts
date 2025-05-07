@@ -5,6 +5,7 @@ import { EmailComposer } from '@/email-composer/interfaces/email-composer.interf
 import { EMAIL_SENDER_SERVICE } from '@/email-sender/email-sender.constants';
 import { EMAIL_COMPOSER_SERVICE } from '@/email-composer/email-composer.constants';
 import { SendUserAccountRecoveryEmailDto } from './dto/send-user-account-recovery-email.dto';
+import { SendUserDataUpdatedEmailDto } from './dto/send-user-data-updated-email.dto';
 
 @Injectable()
 export class UsersService {
@@ -34,6 +35,18 @@ export class UsersService {
       from: process.env.FROM_EMAIL_ADDRESS,
       to: user.email,
       subject: `Recover access to your Techblitz account, ${user.username}`,
+      content: html,
+    });
+  }
+
+  async sendUserDataUpdatedEmail(sendUserDataUpdatedEmailDto: SendUserDataUpdatedEmailDto) {
+    const html = await this.emailComposer.userDataUpdated(sendUserDataUpdatedEmailDto);
+    const { email, username } = sendUserDataUpdatedEmailDto;
+
+    await this.emailSender.send({
+      from: process.env.FROM_EMAIL_ADDRESS,
+      to: email,
+      subject: `Your data was updated, ${username}`,
       content: html,
     });
   }

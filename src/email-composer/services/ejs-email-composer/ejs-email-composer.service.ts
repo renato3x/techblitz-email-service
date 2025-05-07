@@ -6,6 +6,7 @@ import { DateTime } from 'luxon';
 import ejs from 'ejs';
 import juice from 'juice';
 import path from 'path';
+import { SendUserDataUpdatedEmailDto } from '@/users/dto/send-user-data-updated-email.dto';
 
 @Injectable()
 export class EjsEmailComposerService implements EmailComposer {
@@ -37,6 +38,17 @@ export class EjsEmailComposerService implements EmailComposer {
       EXPIRATION_TIME_IN_MINUTES: Math.round(expirationTimeInMinutes),
       ACCOUNT_RECOVERY_URL: `${process.env.CLIENT_URL}/reset-password?token=${token}`,
       ACCOUNT_RECOVERY_SOLICITATION_DATE: createdAt.toFormat("MMMM d, yyyy 'at' h:mm a"),
+    });
+
+    return juice(html);
+  }
+
+  async userDataUpdated({ username, email, updated_at }: SendUserDataUpdatedEmailDto) {
+    const filepath = path.resolve(__dirname, 'templates', 'user-data-updated.ejs');
+    const html = await ejs.renderFile(filepath, {
+      USERNAME: username,
+      EMAIL: email,
+      UPDATED_AT: DateTime.fromJSDate(updated_at).toFormat("MMMM d, yyyy 'at' h:mm a"),
     });
 
     return juice(html);
