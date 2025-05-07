@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { UserRegisteredDto } from './dto/user-registered.dto';
+import { SendUserRegistrationEmailDto } from './dto/send-user-registration-email.dto';
 import { EmailSender } from '@/email-sender/interfaces/email-sender.interface';
 import { EmailComposer } from '@/email-composer/interfaces/email-composer.interface';
 import { EMAIL_SENDER_SERVICE } from '@/email-sender/email-sender.constants';
@@ -14,13 +14,13 @@ export class UsersService {
     private readonly emailComposer: EmailComposer,
   ) {}
 
-  async sendUserRegistrationEmail(userRegisteredDto: UserRegisteredDto) {
-    const html = await this.emailComposer.greetings(userRegisteredDto);
+  async sendUserRegistrationEmail(sendUserRegistrationEmailDto: SendUserRegistrationEmailDto) {
+    const html = await this.emailComposer.greetings(sendUserRegistrationEmailDto);
 
     await this.emailSender.send({
       from: process.env.FROM_EMAIL_ADDRESS,
-      to: userRegisteredDto.email,
-      subject: `Welcome to Techblitz, ${userRegisteredDto.username}!`,
+      to: sendUserRegistrationEmailDto.email,
+      subject: `Welcome to Techblitz, ${sendUserRegistrationEmailDto.username}!`,
       content: html,
     });
   }

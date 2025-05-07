@@ -1,5 +1,5 @@
-import { UserRegisteredDto } from '@/users/dto/user-registered.dto';
+import { SendUserRegistrationEmailDto } from '@/users/dto/send-user-registration-email.dto';
 
 export interface EmailComposer {
-  greetings(userRegisteredDto: UserRegisteredDto): Promise<string> | string;
+  greetings(sendUserRegistrationEmailDto: SendUserRegistrationEmailDto): Promise<string> | string;
 }

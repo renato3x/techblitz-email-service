@@ -1,7 +1,7 @@
 import { createZodDto } from 'nestjs-zod';
 import z from 'zod';
 
-export const UserRegisteredSchema = z.object({
+export const SendUserRegistrationEmailSchema = z.object({
   name: z
     .string({ message: 'Name is required' })
     .trim()
@@ -35,4 +35,4 @@ export const UserRegisteredSchema = z.object({
   id: z.string({ message: 'Id is required' }).uuid('Id must be an uuid'),
 });
 
-export class UserRegisteredDto extends createZodDto(UserRegisteredSchema) {}
+export class SendUserRegistrationEmailDto extends createZodDto(SendUserRegistrationEmailSchema) {}
