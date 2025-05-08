@@ -6,6 +6,8 @@ import { EMAIL_SENDER_SERVICE } from '@/email-sender/email-sender.constants';
 import { EMAIL_COMPOSER_SERVICE } from '@/email-composer/email-composer.constants';
 import { SendUserAccountRecoveryEmailDto } from './dto/send-user-account-recovery-email.dto';
 import { SendUserDataUpdatedEmailDto } from './dto/send-user-data-updated-email.dto';
+import { SendUserPasswordUpdatedEmailDto } from './dto/send-user-password-updated-email.dto';
+import { SendUserPasswordResetEmailDto } from './dto/send-user-password-reset-email.dto';
 
 @Injectable()
 export class UsersService {
@@ -47,6 +49,30 @@ export class UsersService {
       from: process.env.FROM_EMAIL_ADDRESS,
       to: email,
       subject: `Your data was updated, ${username}`,
+      content: html,
+    });
+  }
+
+  async sendUserPasswordUpdatedEmail(sendUserPasswordUpdatedEmailDto: SendUserPasswordUpdatedEmailDto) {
+    const html = await this.emailComposer.userPasswordUpdated(sendUserPasswordUpdatedEmailDto);
+    const { email, username } = sendUserPasswordUpdatedEmailDto;
+
+    await this.emailSender.send({
+      from: process.env.FROM_EMAIL_ADDRESS,
+      to: email,
+      subject: `Your password was updated, ${username}`,
+      content: html,
+    });
+  }
+
+  async sendUserPasswordResetEmail(sendUserPasswordResetEmailDto: SendUserPasswordResetEmailDto) {
+    const html = await this.emailComposer.userPasswordReset(sendUserPasswordResetEmailDto);
+    const { email, username } = sendUserPasswordResetEmailDto;
+
+    await this.emailSender.send({
+      from: process.env.FROM_EMAIL_ADDRESS,
+      to: email,
+      subject: `Your password was reset, ${username}`,
       content: html,
     });
   }
